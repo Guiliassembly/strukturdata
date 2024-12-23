@@ -4,7 +4,7 @@ class Node:
         self.left = None    
         self.right = None   
 
-class Tree:
+class postfixTree:
     def __init__(self):
         self.root = None
 
@@ -29,7 +29,7 @@ class Tree:
         # check untuk subtree kanan kiri
         left_val = self.evaluate(node.left)
         right_val = self.evaluate(node.right)
-        # Apply the operator
+        # kalo
         if node.value == '+':
             return left_val + right_val
         elif node.value == '-':
@@ -50,14 +50,32 @@ class Tree:
             print(node.value, end=" ")
             self.prefix(node.left)
             self.prefix(node.right)
-# Example Usage
-expression = input("enter a postfix expression") 
-tree = Tree()
-tree.treeOperation(expression)
+# testing
+repeat:bool = True
+while (repeat):
+    #enter expression untuk di evaluate
+    expression = input("enter a postfix expression: ") 
+    tree = postfixTree()
+    tree.treeOperation(expression)
 
-print("Inorder Traversal of Expression Tree:")
-tree.inorder_traversal(tree.root)
-print("\nResult of Expression Evaluation:")
-print(tree.evaluate(tree.root))
-print("preorder traversal: ")
-tree.preorder_traversal(tree.root)
+    #print result dari expression
+    print("\nResult of Expression: ")
+    print(tree.evaluate(tree.root))
+
+    #print infix
+    print("infix: ")
+    tree.infix(tree.root)
+    
+    #print prefix
+    print("preorder: ")
+    tree.prefix(tree.root)
+
+    #pilihan untuk mengulang lagi 
+    print("\nmencoba lagi? (y/n)")
+    pilihan = input()
+    if pilihan == 'y':
+        repeat = True
+    elif pilihan == 'n':
+        repeat = False    
+    else:
+        repeat = True
